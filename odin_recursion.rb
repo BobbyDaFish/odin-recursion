@@ -1,6 +1,8 @@
+# frozen-string-literal: true
+
 require 'pry-byebug'
 
-def fibs(num, iteration = num, fib = [])
+def fibs_rec(num, iteration = num, fib = [])
   fib << 0 if fib.empty?
   return fib if num <= 1 || iteration.zero?
 
@@ -11,7 +13,7 @@ def fibs(num, iteration = num, fib = [])
     fib << fib[-1] + fib[-2]
   end
   iteration -= 1
-  fibs(num, iteration, fib)
+  fibs_rec(num, iteration, fib)
 end
 
 p fibs(8)
