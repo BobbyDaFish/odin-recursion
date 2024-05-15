@@ -40,5 +40,7 @@ def merge(left_array, right_array)
   sorted_array
 end
 
-
-p merge_sort([3, 2, 1, 13, 8, 5, 0, 1, 17])
+puts 'Initializing fibs_rec recursive method.'
+p fibs_rec(5)
+puts 'initializing merge_sort recursive method.'
+p merge_sort([3, 2, 1, 13, 8, 5, 0, 1])
