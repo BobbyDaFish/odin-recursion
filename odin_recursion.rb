@@ -17,24 +17,28 @@ def fibs_rec(num, iteration = num, fib = [])
 end
 
 def merge_sort(array)
-  left_array = array[0..((array.length / 2).ceil - 1)]
-  right_array = array[((array.length / 2).floor)..]
-  sorted_array = []
+  right_array = array.pop((array.length / 2).floor)
+  left_array = array
   left_array = merge_sort(left_array) if left_array.length > 1
-  a = 0
-  b = 0
-  if left_array[a].nil?
-    sorted_array << right_array[b..]
-  elsif right_array[b].nil?
-    sorted_array << left_array[a..]
-  elsif left_array[a] <= right_array[b]
-    sorted_array << left_array[a]
-    a += 1
-  else
-    sorted_array << right_array[b]
-    b += 1
+  right_array = merge_sort(right_array) if right_array.length > 1
+  merge(left_array, right_array)
+end
+
+def merge(left_array, right_array)
+  sorted_array = []
+  until left_array.empty? && right_array.empty?
+    if left_array.empty?
+      sorted_array << right_array.delete_at(0)
+    elsif right_array.empty?
+      sorted_array << left_array.delete_at(0)
+    elsif left_array[0] <= right_array[0]
+      sorted_array << left_array.delete_at(0)
+    else
+      sorted_array << right_array.delete_at(0)
+    end
   end
   sorted_array
 end
 
-p merge_sort([1, 5, 9, 3, 7])
+
+p merge_sort([3, 2, 1, 13, 8, 5, 0, 1, 17])
